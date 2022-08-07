@@ -1,12 +1,3 @@
-(use-package company
-	:init
-	(setq company-minimum-prefix-length 1)
-	(setq company-idle-delay 0)
-	(global-company-mode 1))
-(use-package company-flx
-:after (comapny)
-:init
-(company-flx-mode 1))
 
 (use-package vertico
   :hook (after-init . vertico-mode)
@@ -23,6 +14,21 @@
   (define-key vertico-map [backspace] #'vertico-directory-delete-char)
   (define-key vertico-map (kbd "s-SPC") #'+vertico/embark-preview)
   )
+
+(use-package yasnippet
+  :diminish yas-minor-mode
+  :hook (prog-mode . yas-minor-mode)
+  :config (yas-reload-all)
+  :bind ("C-o" . yas-expand))
+(use-package yasnippet-snippets :diminish)
+
+(use-package posframe)
+(use-package markdown-mode
+  :ensure t
+  :mode ("README\\.md\\'" . gfm-mode)
+  :init (setq markdown-command "multimarkdown"))
+
+(add-to-list 'load-path (expand-file-name "~/Downloads/lsp-bridge"))
 
 
 ;; add comment to the option in minibuffer
@@ -53,15 +59,17 @@
 (setq prefix-help-command 'embark-prefix-help-command)
 (global-set-key (kbd "C-;") 'embark-act)
 )
+;; embark-act pop context 
+;; c-x x-h can execute command and needn't remember key
 
 
 
-(package-install 'consult)
+(use-package consult :ensure t)
 ;;replace swiper
 (global-set-key (kbd "C-s") 'consult-line)
 ;;consult-imenu
 
-(package-install 'orderless)
+(use-package orderless :ensure t)
 (setq completion-styles '(orderless))
 
 
@@ -86,9 +94,6 @@
 ;; 	 'embark-collect-mode-hook
 ;; 	 #'consult-preview-at-point-mode))))
 
-(with-eval-after-load 'company
-(define-key company-active-map (kbd "C-n") 'company-select-next)
-(define-key company-active-map (kbd "C-p") 'company-select-previous))
 
 
 (use-package wgrep
