@@ -4,6 +4,8 @@
 (setq inhibit-startup-screen t)
 (tool-bar-mode -1)
 (setq package-check-signature nil)
+
+
 ;; (package-install 'gnu-elpa-keyring-update)
 ;; theme
 ;; (use-package gruvbox-theme
@@ -20,41 +22,31 @@
 (use-package doom-themes)
 (load-theme 'doom-one 1)
 
-;;;; modeline 
-;;  (use-package smart-mode-line
-;;    :init
-;;    (setq sml/no-confirm-load-theme t)
-;;    (setq sml/theme 'respectful)
-;;    (sml/setup)
+;;;; modeline
 
-;; ;;fix doom modeline
-;; :custom-face
-;; (mode-line ((t (:height 0.9))))
-;; (mode-line-inactive ((t (:height 0.9)))))
-;;;;;; ----
-;; (use-package doom-modeline
-;;   :ensure t
-;;   :init (doom-modeline-mode t))
-;; (require 'doom-modeline)
-;; (doom-modeline-mode 1)
 (use-package doom-modeline
   :ensure t
   ;; :init (doom-modeline-mode 1))
   :hook (after-init . doom-modeline-mode)
-  ;; :config (setq doom-modeline-modal-icon t)
+  :config
+  (setq doom-modeline-icon t)
+  (setq doom-modeline-modal-icon nil)
   :custom-face
-(mode-line ((t (:height 0.9))))
-(mode-line-inactive ((t (:height 0.9)))))
-(setq doom-modeline-icon t)
-(setq doom-modeline-modal-icon nil)
+  (mode-line ((t (:height 0.9))))
+  (mode-line-inactive ((t (:height 0.9)))))
+
 ;; (setq doom-modeline-buffer-state-icon nil)
 
-(use-package cnfonts
-  :if (display-graphic-p)
-	:defer nil
-	:init (cnfonts-mode 1)
-	:config(progn
-(setq cnfonts-use-face-font-rescale t)
-(setq cnfonts-profiles
-    '("program" "org-mode" "read-book" "other"))))
+
+;; (use-package cnfonts
+;;   :if (display-graphic-p)
+;; 	:defer nil
+;; 	:init (cnfonts-mode 1)
+;; 	:config(progn
+;; (setq cnfonts-use-face-font-rescale t)
+;; (setq cnfonts-profiles
+;;     '("program" "org-mode" "read-book" "other"))))
+
+
+
 (provide 'init-ui)

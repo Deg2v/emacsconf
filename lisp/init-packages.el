@@ -23,7 +23,9 @@
   (package-refresh-contents)
   (package-install 'use-package))
 
-
+(use-package benchmark-init
+  :init (benchmark-init/activate)
+  :hook (after-init . benchmark-init/deactivate))
 ;; (use-package all-the-icons
 ;; 	:ensure t
 ;; 	:if (display-graphic-p))
@@ -38,7 +40,7 @@
 
 (eval-and-compile
   (setq use-package-always-ensure t)
-  ;; (setq use-package-always-defer t)
+  (setq use-package-always-defer t)
   (setq use-package-always-demand nil)
   (setq use-package-expand-minimally t)
   (setq use-package-verbose t))
@@ -53,7 +55,9 @@
 
 
 ;;magit
-(use-package magit :ensure t)
+(use-package magit
+  :ensure t
+  :defer t)
 
 
 (add-to-list 'load-path (expand-file-name "~/.emacs.d/awesome-tab"))

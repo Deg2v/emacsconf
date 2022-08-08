@@ -28,7 +28,7 @@
   :mode ("README\\.md\\'" . gfm-mode)
   :init (setq markdown-command "multimarkdown"))
 
-(add-to-list 'load-path (expand-file-name "~/Downloads/lsp-bridge"))
+
 
 
 ;; add comment to the option in minibuffer
@@ -59,7 +59,7 @@
 (setq prefix-help-command 'embark-prefix-help-command)
 (global-set-key (kbd "C-;") 'embark-act)
 )
-;; embark-act pop context 
+;; embark-act pop context
 ;; c-x x-h can execute command and needn't remember key
 
 

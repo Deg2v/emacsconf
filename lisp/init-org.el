@@ -1,8 +1,9 @@
 (require 'org-tempo)
 (use-package org-contrib
-             :pin nongnu)
-;; 禁用左尖括号
-(require 'org-checklist)
+             :pin nongnu
+             :after org
+    (require 'org-checklist))
+
 ;; need repeat task and properties
 (setq org-log-done t)
 (setq org-log-into-drawer t)
@@ -19,7 +20,7 @@
 (global-set-key (kbd "C-c r") 'org-capture)
 
 
-
+;; 禁用左尖括号
 (setq electric-pair-inhibit-predicate
       `(lambda (c)
 	 (if (char-equal c ?\<) t (,electric-pair-inhibit-predicate c))))
@@ -52,7 +53,7 @@
       (quote ((sequence "TODO(t)" "STARTED(s)" "|" "DONE(d!/!)")
 	      (sequence "WAITING(w@/!)" "SOMEDAY(S)" "|" "CANCELLED(c@/!)" "MEETING(m)" "PHONE(p)"))))
 
-;;fix 
+;;fix
 
 
 

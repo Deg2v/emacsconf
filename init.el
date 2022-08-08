@@ -4,32 +4,27 @@
 (require 'init-packages)
 (require 'init-basic)
 (require 'init-const)
+(require 'init-functions)
 (require 'init-keybinding)
 (require 'init-better-defaults)
 (require 'init-completion)
 (require 'init-ui)
 (require 'init-org)
-(require 'init-eaf)
 (require 'init-evil)
-;; ------
 
-;; (require 'init-lsp)
-;; (require 'init-corfu)
-(require 'init-lsp-bridge)
+
+(when *is-linux*
+  (progn (require 'init-eaf)
+			(require 'init-lsp-bridge)
+      ;; (require 'init-lsp)
+      ;; (require 'init-corfu)
+      ))
 
 (when *is-windows* (require 'init-windows))
-
-
-
-(defun my-open-current-directory ()
-  (interactive)
-  (consult-directory-externally default-directory))
-
-
 
 
 (setq custom-file (expand-file-name "~/.emacs.d/custome.el"))
 ;; (load custom-file)
 (when (file-exists-p custom-file)
-  (load-file custom-file))
+  (load custom-file))
 

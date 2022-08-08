@@ -5,15 +5,12 @@
 	:init
 	(setq company-minimum-prefix-length 1)
 	(setq company-idle-delay 0)
-	(global-company-mode 1))
-(use-package company-flx
-:after (comapny)
-:init
-(company-flx-mode 1))
+	(global-company-mode 1)
+	:bind (:map company-active-map
+	("C-n" . company-select-next)
+	("C-p" . company-select-previous)))
 
-(with-eval-after-load 'company
-(define-key company-active-map (kbd "C-n") 'company-select-next)
-(define-key company-active-map (kbd "C-p") 'company-select-previous))
+
 (use-package lsp-mode
   :commands (lsp lsp-deferred)
   :init
