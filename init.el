@@ -1,5 +1,4 @@
 ; -*- lexical-binding: t -*-
-;(setq w32-apps-modifier 'super)       ; 通过SharpKeys改成了 Application
 (add-to-list 'load-path "~/.emacs.d/lisp/")
 (require 'init-packages)
 (require 'init-basic)
@@ -15,9 +14,9 @@
 
 (when *is-linux*
   (progn (require 'init-eaf)
-			(require 'init-lsp-bridge)
-      ;; (require 'init-lsp)
-      ;; (require 'init-corfu)
+        (require 'init-lsp-bridge)
+        ;; (require 'init-lsp)
+        ;; (require 'init-corfu)
       ))
 
 (when *is-windows* (require 'init-windows))

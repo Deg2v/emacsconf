@@ -37,17 +37,9 @@
 (use-package benchmark-init
   :init (benchmark-init/activate)
   :hook (after-init . benchmark-init/deactivate))
-;; (use-package all-the-icons
-;; 	:ensure t
-;; 	:if (display-graphic-p))
-;;
-;; (use-package sth
-;; :ensure t ;
-;; :defrt nil
-;; :init (setq ....)
-;; :config (jfksldjf)
-;; :bind
-;; :hook)
+(use-package all-the-icons
+	:ensure t
+	:if (display-graphic-p))
 
 (use-package gnu-elpa-keyring-update)
 (eval-and-compile
@@ -60,23 +52,27 @@
 
 (require 'use-package)
 
+;; (use-package sth
+;; :ensure t ;
+;; :defrt nil
+;; :init (setq ....)
+;; :config (jfksldjf)
+;; :bind
+;; :hook)
 
 (use-package restart-emacs
   :ensure t)
-
-
 
 ;;magit
 (use-package magit
   :ensure t
   :defer t)
 
-
 (add-to-list 'load-path (expand-file-name "~/.emacs.d/awesome-tab"))
 (require 'awesome-tab)
 (awesome-tab-mode t)
 (setq awesome-tab-height 180)
-(setq awesome-tab-active-bar-height 150)
+(setq awesome-tab-active-bar-height 40)
 
 (defun awesome-tab-buffer-groups ()
 "`awesome-tab-buffer-groups' control buffers' group rules.
@@ -105,9 +101,12 @@ Other buffer group by `awesome-tab-get-group-name' with project name."
     (t
      (awesome-tab-get-group-name (current-buffer))))))
 (setq make-backup-files nil)
-(require 'recentf)
-(recentf-mode 1)
-(setq recentf-max-menu-item 10)
+(use-package recentf
+    :init
+	(recentf-mode 1)
+    :config
+    (setq recentf-max-menu-item 10))
+
 ;; (use-package embark-consult :ensure t)
 
 

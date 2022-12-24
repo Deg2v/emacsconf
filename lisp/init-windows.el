@@ -1,47 +1,4 @@
 
-;; expore
-;; (defun consult-directory-externally (file)
-;;   "Open FILE externally using the default application of the system."
-;;   (interactive "fOpen externally: ")
-;;   (if (and (eq system-type 'windows-nt)
-;; 	   (fboundp 'w32-shell-execute))
-;;       (shell-command-to-string (encode-coding-string (replace-regexp-in-string "/" "\\\\"
-;; 	    (format "explorer.exe %s" (file-name-directory (expand-file-name file)))) 'gbk))
-;;     (call-process (pcase system-type
-;; 		    ('darwin "open")
-;; 		    ('cygwin "cygstart")
-;; 		    (_ "xdg-open"))
-;; 		  nil 0 nil
-;; 		  (file-name-directory (expand-file-name file)))))
-;; (require 'embark)
-;;  (eval-after-load 'embark
-;;    (define-key embark-file-map (kbd "E") #'consult-directory-externally))
-
-;; emax
-;; (progn
-;; 	(defvar emax-root (concat (expand-file-name "~") "/emax"))
-;; 	(defvar emax-bin (concat emax-root "/bin"))
-;; 	(defvar emax-bin64 (concat emax-root "/bin64"))
-
-;; 	(setq exec-path (cons emax-bin exec-path))
-;; 	(setenv "PATH" (concat emax-bin ";" (getenv "PATH")))
-
-;; 	(setq exec-path (cons emax-bin64 exec-path))
-;; 	(setenv "PATH" (concat emax-bin64 ";" (getenv "PATH")))
-
-;; 	(setq emacsd-bin (concat user-emacs-directory "bin"))
-;; 	(setq exec-path (cons  emacsd-bin exec-path))
-;; 	(setenv "PATH" (concat emacsd-bin  ";" (getenv "PATH")))
-
-	;;可选安装msys64
-	;;下载地址: http://repo.msys2.org/mingw/sources/
-	;; (setenv "PATH" (concat "C:\\msys64\\usr\\bin;C:\\msys64\\mingw64\\bin;" (getenv "PATH")))
-
-	;; (dolist (dir '("~/emax/" "~/emax/bin/" "~/emax/bin64/" "~/emax/lisp/" "~/emax/elpa/"))
-	;;   (add-to-list 'load-path dir))
-	;; )
-
-
 ;;使用ripgrep来进行搜索
 ;;consult-ripgrep
 
@@ -63,9 +20,6 @@
 ;; 	consult-async-input-debounce 0.1)
 ;;     ))
 
-
-
-
 ;; 快捷键
 (setq w32-pass-lwindow-to-system nil)  ; 左windows键
 (setq w32-lwindow-modifier 'super)
@@ -77,6 +31,7 @@
 (setq w32-pass-apps-to-system nil) ; 菜单键/App键
 (setq w32-apps-modifier 'hyper)
 (w32-register-hot-key [H-])
+;;;(setq w32-apps-modifier 'super)       ; 通过SharpKeys改成了 Application
 
 
 (global-set-key (kbd "s-a") 'mark-whole-buffer)
@@ -103,19 +58,6 @@
 :init
 (company-flx-mode 1))
 
-
-;;;通过修改字体解决windows上Emacs的卡顿
-;; (use-package emacs
-;;   :if(display-graphic-p)
-;;   :config
-;;   ;; Font settings
-;;   (if *is-windows*
-;;       (progn
-;; 	(set-face-attribute 'default nil  :font "Microsoft Yahei Mono 9")
-;; 	(dolist (charset '(kana han symbol cjk-misc bopomofo))
-;; 	  (set-fontset-font (frame-parameter nil 'font)
-;; 			    charset (font-spec :family "Microsoft Yahei Mono" :size 12))))
-;;     (set-face-attribute 'default nil :font "Source Code Pro for Powerline 11")))
 
 ;; emax
 (progn
@@ -156,6 +98,8 @@
 		  nil 0 nil
 		  (file-name-directory (expand-file-name file)))))
 (require 'embark)
+;;  (eval-after-load 'embark
+;;    (define-key embark-file-map (kbd "E") #'consult-directory-externally))
 
 ;;everyting
 ;;consult-locate
@@ -165,21 +109,6 @@
   (setq consult-locate-args (encode-coding-string "es.exe -i -p -r" 'gbk))
   (add-to-list 'process-coding-system-alist '("es" gbk . gbk))
   )
-
-;;;设置中文字体
-(use-package emacs
-  :if(display-graphic-p)
-  :config
-  ;; Font settings
-  (if *is-windows*
-      (progn
-	(set-face-attribute 'default nil  :font "CaskaydiaCove Nerd Font Mono 11")
-	(dolist (charset '(kana han symbol cjk-misc bopomofo))
-	  (set-fontset-font (frame-parameter nil 'font)
-			    charset (font-spec :family "Microsoft YaHei UI" :size 22))))
-    ;; (set-face-attribute 'default nil :font "Source Code Pro for Powerline 11")
-    ))
-
 
 
 (provide 'init-windows)

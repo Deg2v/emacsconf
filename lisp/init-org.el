@@ -19,7 +19,8 @@
 
 (global-set-key (kbd "C-c r") 'org-capture)
 
-(setq org-ellipsis "⤵")
+;; (setq org-ellipsis "⤵")
+(setq org-ellipsis "[+]")
 ;; 禁用左尖括号
 (setq electric-pair-inhibit-predicate
       `(lambda (c)

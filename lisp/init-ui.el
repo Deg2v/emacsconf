@@ -16,13 +16,10 @@
 ;; (add-to-list 'global-mode-string '("" keycast-mode-line))
 ;;(keycast-mode t)
 
-
-
 (use-package doom-themes)
 (load-theme 'doom-one 1)
 
-;;;; modeline
-
+;;; modeline
 (use-package doom-modeline
   :ensure t
   ;; :init (doom-modeline-mode 1))
@@ -36,7 +33,7 @@
 
 ;; (setq doom-modeline-buffer-state-icon nil)
 
-
+;;; Deprecations
 ;; (use-package cnfonts
 ;;   :if (display-graphic-p)
 ;; 	:defer nil
@@ -46,6 +43,31 @@
 ;; (setq cnfonts-profiles
 ;;     '("program" "org-mode" "read-book" "other"))))
 
+;;;font config
+(use-package emacs
+  :if(display-graphic-p)
+  :config
+  ;; Font settings
+  (if *is-linux*
+      (progn
+	;; (set-face-attribute 'default nil  :font "CaskaydiaCove Nerd Font Mono 11")
+	(set-face-attribute 'default nil  :font "CaskaydiaCove Nerd Font Mono 11")
+	(dolist (charset '(kana han symbol cjk-misc bopomofo))
+	  (set-fontset-font (frame-parameter nil 'font)
+			    ;; charset (font-spec :family "Microsoft YaHei UI" :size 22))))
+			    ;; charset (font-spec :family "WenQuanYi Micro Hei Mono" :size 18))))
+			    charset (font-spec :family "Microsoft YaHei Mono" :size 18))))
+    ;; (set-face-attribute 'default nil :font "Source Code Pro for Powerline 11")
+    )
+  ;; Font settings
+  (if *is-windows*
+      (progn
+	(set-face-attribute 'default nil  :font "CaskaydiaCove Nerd Font Mono 11")
+	(dolist (charset '(kana han symbol cjk-misc bopomofo))
+	  (set-fontset-font (frame-parameter nil 'font)
+			    charset (font-spec :family "Microsoft YaHei UI" :size 22))))
+    ;; (set-face-attribute 'default nil :font "Source Code Pro for Powerline 11")
+    ))
 
 
 (provide 'init-ui)
