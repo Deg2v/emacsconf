@@ -17,3 +17,5 @@ cnfonts
 eaf
 eshell
 site-lisp
+.last-package-update-day
+test_config.el

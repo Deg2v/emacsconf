@@ -21,5 +21,6 @@
 (use-package saveplace
   :ensure nil
   :hook (after-init . save-place-mode))
-
+(add-hook 'prog-mode-hook (lambda () (progn(setq-default tab-width 4)
+(setq tab-width 4))))
 (provide 'init-basic)

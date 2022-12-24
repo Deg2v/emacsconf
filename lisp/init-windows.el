@@ -67,17 +67,24 @@
 
 
 ;; 快捷键
-;; (setq w32-pass-lwindow-to-system nil)  ; 左windows键
-;; (setq w32-lwindow-modifier 'super)
+(setq w32-pass-lwindow-to-system nil)  ; 左windows键
+(setq w32-lwindow-modifier 'super)
 
-;; (setq w32-pass-rwindow-to-system nil) ; 右windows键
-;; (setq w32-rwindow-modifier 'super)
-;; (w32-register-hot-key [s-])
+(setq w32-pass-rwindow-to-system nil) ; 右windows键
+(setq w32-rwindow-modifier 'super)
+(w32-register-hot-key [s-])
 
-;; (setq w32-pass-apps-to-system nil) ; 菜单键/App键
-;; (setq w32-apps-modifier 'hyper)
-;; (w32-register-hot-key [H-])
+(setq w32-pass-apps-to-system nil) ; 菜单键/App键
+(setq w32-apps-modifier 'hyper)
+(w32-register-hot-key [H-])
 
+
+(global-set-key (kbd "s-a") 'mark-whole-buffer)
+(global-set-key (kbd "s-c") 'kill-ring-save) ;;对应Windows上面的Ctrl-c 复制
+(global-set-key (kbd "s-s") 'save-buffer) ;; 对应Windows上面的Ctrl-s 保存
+(global-set-key (kbd "s-v") 'yank) ;对应Windows上面的Ctrl-v 粘贴
+(global-set-key (kbd "s-z") 'undo) ;对应Windows上面的Ctrol-z 撤销
+(global-set-key (kbd "s-x") 'kill-region) ;对应Windows上面的Ctrol-x 剪切
 ;; (server-mode 1)
 
 ;;(icomplete-mode -1)
@@ -159,9 +166,19 @@
   (add-to-list 'process-coding-system-alist '("es" gbk . gbk))
   )
 
-
-
-
+;;;设置中文字体
+(use-package emacs
+  :if(display-graphic-p)
+  :config
+  ;; Font settings
+  (if *is-windows*
+      (progn
+	(set-face-attribute 'default nil  :font "CaskaydiaCove Nerd Font Mono 11")
+	(dolist (charset '(kana han symbol cjk-misc bopomofo))
+	  (set-fontset-font (frame-parameter nil 'font)
+			    charset (font-spec :family "Microsoft YaHei UI" :size 22))))
+    ;; (set-face-attribute 'default nil :font "Source Code Pro for Powerline 11")
+    ))
 
 
 

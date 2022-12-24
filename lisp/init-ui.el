@@ -6,7 +6,6 @@
 (setq package-check-signature nil)
 
 
-;; (package-install 'gnu-elpa-keyring-update)
 ;; theme
 ;; (use-package gruvbox-theme
 ;;   :init (load-theme 'gruvbox-dark-soft t))

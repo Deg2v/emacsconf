@@ -23,6 +23,17 @@
   (package-refresh-contents)
   (package-install 'use-package))
 
+;;;; update
+(use-package auto-package-update
+  :ensure t
+  :config
+  (setq auto-package-update-delete-old-versions t)
+  (setq auto-package-update-hide-results t)
+  (auto-package-update-maybe))
+
+
+(use-package posframe
+    :ensure t)
 (use-package benchmark-init
   :init (benchmark-init/activate)
   :hook (after-init . benchmark-init/deactivate))
@@ -38,9 +49,10 @@
 ;; :bind
 ;; :hook)
 
+(use-package gnu-elpa-keyring-update)
 (eval-and-compile
   (setq use-package-always-ensure t)
-  (setq use-package-always-defer t)
+  ;; (setq use-package-always-defer t)
   (setq use-package-always-demand nil)
   (setq use-package-expand-minimally t)
   (setq use-package-verbose t))

@@ -13,17 +13,18 @@
     (require 'eaf-markdown-previewer)
     (require 'eaf-pdf-viewer)
     (require 'eaf-image-viewer)
-    (require 'eaf-browser)
-    (require 'eaf-demo)
+    ;; (require 'eaf-browser)
+    ;; (require 'eaf-demo)
     (require 'eaf-org-previewer)
     (setq eaf-python-command "/usr/bin/python3")
 (setq eaf-buffer-background-color "#FFFFFF")
-(setq eaf-pdf-dark-mode nil)
+
     (defalias 'browse-web #'eaf-open-browser)
     (eaf-bind-key scroll_up "C-n" eaf-pdf-viewer-keybinding)
     (eaf-bind-key scroll_down "C-p" eaf-pdf-viewer-keybinding)
     ;; (eaf-bind-key take_photo "p" eaf-camera-keybinding)
-    (eaf-bind-key nil "M-q" eaf-browser-keybinding)) ;; unbind, see more in the Wiki
+    ;; (eaf-bind-key nil "M-q" eaf-browser-keybinding)) ;; unbind, see more in the Wiki
+    )
 
 
 (provide 'init-eaf)
