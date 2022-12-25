@@ -12,31 +12,29 @@
 
 
 (use-package lsp-mode
-  :commands (lsp lsp-deferred)
-  :init
-  (defun lsp-save-actions ()
-    "LSP actions before save."
-    (add-hook 'before-save-hook #'lsp-organize-imports t t)
-	(add-hook 'before-save-hook #'lsp-format-buffer t t))
-  :hook ((lsp-mode . #'lsp-enable-which-key-integration)
-         (lsp-mode . #'lsp-save-actions)
-         ((c-mode
-           c++-mode
-           python-mode) . lsp-deferred))
-  :config
-  (setq lsp-auto-guess-root t
-	    lsp-headerline-breadcrumb-enable nil
-	    lsp-keymap-prefix "C-c l"
-	    lsp-log-io nil)
-  (define-key lsp-mode-map (kbd "C-c l") lsp-command-map))
+    :commands (lsp lsp-deferred)
+    :init
+    (defun lsp-save-actions ()
+        "LSP actions before save."
+        (add-hook 'before-save-hook #'lsp-organize-imports t t)
+        (add-hook 'before-save-hook #'lsp-format-buffer t t))
+    :hook ((lsp-mode . #'lsp-enable-which-key-integration)
+        (lsp-mode . #'lsp-save-actions)
+        ((c-mode c++-mode python-mode) . lsp-deferred))
+    :config
+    (setq lsp-auto-guess-root t
+        lsp-headerline-breadcrumb-enable nil
+        lsp-keymap-prefix "C-c l"
+        lsp-log-io nil)
+    (define-key lsp-mode-map (kbd "C-c l") lsp-command-map))
 
 ;; ;; Optional features, disabled default
 (when nil
-  (use-package lsp-ui
+    (use-package lsp-ui
     :after lsp-mode
     :init
     (setq lsp-ui-doc-include-signature t
-	      lsp-ui-doc-position 'at-point
+          lsp-ui-doc-position 'at-point
           lsp-ui-sideline-ignore-duplicate t)
     (add-hook 'lsp-mode-hook 'lsp-ui-mode)
     (add-hook 'lsp-ui-mode-hook 'lsp-modeline-code-actions-mode)

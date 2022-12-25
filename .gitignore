@@ -1,7 +1,6 @@
 auto-save-list
 recentf
 elpa
-awesome-tab
 *~
 \#*\#
 .lsp-session-v1
@@ -17,5 +16,6 @@ cnfonts
 eaf
 eshell
 site-lisp
+games
 .last-package-update-day
 test_config.el

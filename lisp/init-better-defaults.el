@@ -23,7 +23,7 @@
 (show-paren-mode t)
 (setq confirm-kill-processes nil)
 (defun my/tianqi ()
-  "天气预报 based on https://github.com/chubin/wttr.in"
-  (interactive)
-  (eww "zh-cn.wttr.in/Tianhe?TAFm"))
+    "天气预报 based on https://github.com/chubin/wttr.in"
+    (interactive)
+    (eww "zh-cn.wttr.in/Tianhe?TAFm"))
 (provide 'init-better-defaults)

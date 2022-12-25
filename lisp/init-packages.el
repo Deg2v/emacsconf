@@ -1,6 +1,5 @@
 (require 'package)
 ;; (setq package-archives '(("gnu"   . "http://elpa.zilongshanren.com/gnu/")
-
 ;; 			 ("melpa" . "http://elpa.zilongshanren.com/melpa/")))
 ;; (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
 ;;
@@ -8,49 +7,15 @@
                          ("melpa" . "http://mirrors.tuna.tsinghua.edu.cn/elpa/melpa/")
                          ("nongnu" . "http://mirrors.tuna.tsinghua.edu.cn/elpa/nongnu/")))
                          ;; 添加新的 nongnu 的源
-
-  ;; (setq package-archives
-  ;;       '(("melpa" . "https://mirrors.163.com/elpa/melpa/")
-  ;;         ("melpa-stable" . "https://mirrors.163.com/elpa/stable-melpa/")))
 (package-initialize) ;; You might already have this line
-;; (package-initialize)
 
 ;;防止反复调用 package-refresh-contents 会影响加载速度
 (when (not package-archive-contents)
-  (package-refresh-contents))
+    (package-refresh-contents))
 ;; 除非已经安装use-package,否则每次先刷新，再安装use-package
 (unless (package-install 'use-package)
-  (package-refresh-contents)
-  (package-install 'use-package))
-
-;;;; update
-(use-package auto-package-update
-  :ensure t
-  :config
-  (setq auto-package-update-delete-old-versions t)
-  (setq auto-package-update-hide-results t)
-  (auto-package-update-maybe))
-
-
-(use-package posframe
-    :ensure t)
-(use-package benchmark-init
-  :init (benchmark-init/activate)
-  :hook (after-init . benchmark-init/deactivate))
-(use-package all-the-icons
-	:ensure t
-	:if (display-graphic-p))
-
-(use-package gnu-elpa-keyring-update)
-(eval-and-compile
-  (setq use-package-always-ensure t)
-  ;; (setq use-package-always-defer t)
-  (setq use-package-always-demand nil)
-  (setq use-package-expand-minimally t)
-  (setq use-package-verbose t))
-
-
-(require 'use-package)
+    (package-refresh-contents)
+    (package-install 'use-package))
 
 ;; (use-package sth
 ;; :ensure t ;
@@ -60,19 +25,48 @@
 ;; :bind
 ;; :hook)
 
+;;; auto-update
+(use-package auto-package-update
+    :ensure t
+    :config
+    (setq auto-package-update-delete-old-versions t)
+    (setq auto-package-update-hide-results t)
+    (auto-package-update-maybe))
+
 (use-package restart-emacs
-  :ensure t)
+    :ensure t)
+
+(use-package posframe
+    :ensure t)
+
+(use-package benchmark-init
+    :init (benchmark-init/activate)
+    :hook (after-init . benchmark-init/deactivate))
+
+(use-package all-the-icons
+    :ensure t
+    :if (display-graphic-p))
+
+(use-package gnu-elpa-keyring-update)
+
+(eval-and-compile
+    (setq use-package-always-ensure t)
+    ;; (setq use-package-always-defer t)
+    (setq use-package-always-demand nil)
+    (setq use-package-expand-minimally t)
+    (setq use-package-verbose t))
 
 ;;magit
 (use-package magit
-  :ensure t
-  :defer t)
+    :ensure t
+    :defer t)
 
-(add-to-list 'load-path (expand-file-name "~/.emacs.d/awesome-tab"))
-(require 'awesome-tab)
-(awesome-tab-mode t)
-(setq awesome-tab-height 180)
-(setq awesome-tab-active-bar-height 40)
+(use-package awesome-tab
+    :load-path  "~/.emacs.d/site-lisp/awesome-tab"
+    :config
+    (awesome-tab-mode 1)
+    (setq awesome-tab-height 180)
+    (setq awesome-tab-active-bar-height 40))
 
 (defun awesome-tab-buffer-groups ()
 "`awesome-tab-buffer-groups' control buffers' group rules.
@@ -99,7 +93,7 @@ Other buffer group by `awesome-tab-get-group-name' with project name."
     ((derived-mode-p 'eaf-mode)
     "EAF")
     (t
-     (awesome-tab-get-group-name (current-buffer))))))
+    (awesome-tab-get-group-name (current-buffer))))))
 (setq make-backup-files nil)
 (use-package recentf
     :init
