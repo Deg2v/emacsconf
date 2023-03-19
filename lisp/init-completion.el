@@ -1,6 +1,8 @@
 
 (use-package vertico
-    :hook (after-init . vertico-mode)
+    ;; :hook (after-init . vertico-mode)
+    :init 
+    (vertico-mode)
     :config
     (setq vertico-resize nil
         vertico-count 17
@@ -14,6 +16,16 @@
     (define-key vertico-map [backspace] #'vertico-directory-delete-char)
     (define-key vertico-map (kbd "s-SPC") #'+vertico/embark-preview))
 
+(use-package vertico-directory
+  :after vertico
+  :ensure nil
+  ;; ;;  More convenient directory navigation commands
+  :bind (:map vertico-map
+              ("RET" . vertico-directory-enter)
+              ("DEL" . vertico-directory-delete-char)
+              ("M-DEL" . vertico-directory-delete-word))
+  ;; Tidy shadowed file names
+  :hook (rfn-eshadow-update-overlay . vertico-directory-tidy))
 (use-package yasnippet
     :diminish yas-minor-mode
     :hook (prog-mode . yas-minor-mode)
@@ -55,9 +67,12 @@
 ;; embark-act pop context
 ;; c-x x-h can execute command and needn't remember key
 
-(use-package consult :ensure t)
+(use-package consult 
+    :ensure t
+    :bind 
+    (("C-s" . consult-line)))
+
 ;;replace swiper
-(global-set-key (kbd "C-s") 'consult-line)
 ;;consult-imenu
 
 (use-package orderless :ensure t)
@@ -79,10 +94,10 @@
 ;;   '(eval-after-load
 ;;        'embark
 ;;      '(progn
-;; 	(require 'embark-consult)
-;; 	(add-hook
-;; 	 'embark-collect-mode-hook
-;; 	 #'consult-preview-at-point-mode))))
+;;  (require 'embark-consult)
+;;  (add-hook
+;;   'embark-collect-mode-hook
+;;   #'consult-preview-at-point-mode))))
 
 (use-package wgrep
     :commands wgrep-change-to-wgrep-mode

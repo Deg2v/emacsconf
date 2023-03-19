@@ -97,7 +97,7 @@
         (_ "xdg-open"))
         nil 0 nil
         (file-name-directory (expand-file-name file)))))
-(require 'embark)
+;; (require 'embark)
 ;;  (eval-after-load 'embark
 ;;    (define-key embark-file-map (kbd "E") #'consult-directory-externally))
 
