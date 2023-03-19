@@ -19,3 +19,4 @@ site-lisp
 games
 .last-package-update-day
 test_config.el
+org-roam.db
